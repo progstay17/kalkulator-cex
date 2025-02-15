@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Arbitrage</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="max-w-4xl mx-auto p-6 space-y-6">
+        <div class="flex items-center space-x-2">
+            <svg class="w-6 h-6 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="8.5" cy="7" r="4"></circle>
+                <polyline points="22 11.5 17 6 12 11.5"></polyline>
+            </svg>
+            <h1 class="text-2xl font-bold">Kalkulator Arbitrage</h1>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="space-y-4 p-6 bg-white rounded-lg shadow">
+                <h2 class="text-lg font-semibold">Input Data</h2>
+                
+                <div class="space-y-4">
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium">Modal USDT</label>
+                        <input
+                            type="number"
+                            id="usdtAmount"
+                            class="w-full p-2 border rounded"
+                            placeholder="Masukkan jumlah USDT"
+                        />
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium">Harga Beli</label>
+                            <input
+                                type="number"
+                                id="buyPrice"
+                                class="w-full p-2 border rounded"
+                                placeholder="Harga beli per token"
+                            />
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium">Harga Jual</label>
+                            <input
+                                type="number"
+                                id="sellPrice"
+                                class="w-full p-2 border rounded"
+                                placeholder="Harga jual per token"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium">WD Fee Token</label>
+                            <input
+                                type="number"
+                                id="wdFeeBuyToken"
+                                class="w-full p-2 border rounded"
+                                placeholder="Fee dalam jumlah token"
+                            />
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium">WD Fee USDT</label>
+                            <input
+                                type="number"
+                                id="wdFeeSellUsdt"
+                                class="w-full p-2 border rounded"
+                                placeholder="Fee dalam USDT"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="border p-4 rounded space-y-4">
+                        <h3 class="font-medium">Fee Exchange</h3>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <p class="text-sm font-medium mb-2">Exchange Beli</p>
+                                <div class="space-y-2">
+                                    <div class="flex items-center space-x-2">
+                                        <input
+                                            type="radio"
+                                            id="makerBuy"
+                                            name="buyFeeType"
+                                            value="maker"
+                                            checked
+                                        />
+                                        <label for="makerBuy" class="text-sm">
+                                            Maker (0.1%)
+                                        </label>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <input
+                                            type="radio"
+                                            id="takerBuy"
+                                            name="buyFeeType"
+                                            value="taker"
+                                        />
+                                        <label for="takerBuy" class="text-sm">
+                                            Taker (0.2%)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p class="text-sm font-medium mb-2">Exchange Jual</p>
+                                <div class="space-y-2">
+                                    <div class="flex items-center space-x-2">
+                                        <input
+                                            type="radio"
+                                            id="makerSell"
+                                            name="sellFeeType"
+                                            value="maker"
+                                            checked
+                                        />
+                                        <label for="makerSell" class="text-sm">
+                                            Maker (0.1%)
+                                        </label>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <input
+                                            type="radio"
+                                            id="takerSell"
+                                            name="sellFeeType"
+                                            value="taker"
+                                        />
+                                        <label for="takerSell" class="text-sm">
+                                            Taker (0.2%)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        class="w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600"
+                        onclick="calculateProfit()"
+                    >
+                        Hitung Profit
+                    </button>
+                </div>
+            </div>
+
+            <div id="results" class="space-y-4 p-6 bg-white rounded-lg shadow hidden">
+                <h2 class="text-lg font-semibold">Hasil Perhitungan</h2>
+                
+                <div class="space-y-4">
+                    <div class="p-4 border rounded">
+                        <p class="text-sm text-gray-600">Jumlah Token</p>
+                        <p class="text-lg font-semibold" id="tokenAmount">0 Token</p>
+                    </div>
+
+                    <div class="p-4 border rounded">
+                        <p class="text-sm text-gray-600">Total Modal USDT</p>
+                        <p class="text-lg font-semibold" id="buyTotal">0 USDT</p>
+                    </div>
+
+                    <div class="p-4 border rounded">
+                        <p class="text-sm text-gray-600">Total Hasil Jual</p>
+                        <p class="text-lg font-semibold" id="sellTotal">0 USDT</p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <p class="font-medium">Rincian Fee:</p>
+                        <div class="p-3 bg-gray-50 rounded text-sm space-y-1">
+                            <p>Fee Exchange Beli: <span id="buyExchangeFee">0</span> USDT</p>
+                            <p>Fee Exchange Jual: <span id="sellExchangeFee">0</span> USDT</p>
+                            <p>WD Fee Token: <span id="withdrawalFeeBuy">0</span> USDT</p>
+                            <p>WD Fee USDT: <span id="withdrawalFeeSell">0</span> USDT</p>
+                            <p class="font-medium">Total Fee: <span id="totalFee">0</span> USDT</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 border rounded">
+                        <p class="text-sm text-gray-600">Profit Kotor</p>
+                        <p class="text-lg font-semibold" id="grossProfit">0 USDT</p>
+                    </div>
+
+                    <div id="netProfitContainer" class="p-4 border rounded bg-green-50">
+                        <p class="text-sm text-gray-600">Profit Bersih</p>
+                        <p class="text-lg font-semibold text-green-600" id="netProfit">0 USDT</p>
+                        <p class="text-sm mt-1">
+                            (<span id="profitPercentage">0</span>%)
+                        </p>
+                    </div>
+
+                    <div id="profitStatus" class="p-4 rounded text-center font-semibold bg-green-100 text-green-700">
+                        Menguntungkan ✅
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

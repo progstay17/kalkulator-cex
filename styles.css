@@ -1,0 +1,182 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+}
+
+input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"]::-moz-inner-spin-button,
+input[type="number"]::-moz-outer-spin-button {
+    appearance: none;
+    margin: 0;
+}
+
+.max-w-4xl {
+    max-width: 1152px;
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.p-6 {
+    padding: 1.5rem;
+}
+
+.space-y-6 {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.flex {
+    display: flex;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.space-x-2 {
+    margin-left: 0.5rem;
+}
+
+.text-blue-500 {
+    color: #63b3ed;
+}
+
+.text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.grid {
+    display: grid;
+}
+
+.md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.gap-6 {
+    gap: 1.5rem;
+}
+
+.space-y-4 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.bg-white {
+    background-color: #fff;
+}
+
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+.shadow {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.block {
+    display: block;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.p-2 {
+    padding: 0.5rem;
+}
+
+.border {
+    border-width: 1px;
+    border-color: #e5e7eb;
+}
+
+.rounded {
+    border-radius: 0.25rem;
+}
+
+.w-6 {
+    width: 1.5rem;
+}
+
+.h-6 {
+    height: 1.5rem;
+}
+
+.text-gray-600 {
+    color: #4b5563;
+}
+
+.text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.hidden {
+    display: none;
+}
+
+.bg-green-50 {
+    background-color: #ecfdf5;
+}
+
+.text-green-600 {
+    color: #047857;
+}
+
+.bg-red-50 {
+    background-color: #fef2f2;
+}
+
+.text-red-600 {
+    color: #b91c1c;
+}
+
+.bg-green-100 {
+    background-color: #ecfdf5;
+}
+
+.text-green-700 {
+    color: #16a34a;
+}
+
+.bg-red-100 {
+    background-color: #fef2f2;
+}
+
+.text-red-700 {
+    color: #dc2626;
+}
