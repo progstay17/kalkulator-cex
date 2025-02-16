@@ -1,4 +1,24 @@
 // script.js
+document.getElementById('makerBuy').addEventListener('change', function() {
+    document.getElementById('customMakerFeeBuy').disabled = false;
+    document.getElementById('customTakerFeeBuy').disabled = true;
+});
+
+document.getElementById('takerBuy').addEventListener('change', function() {
+    document.getElementById('customMakerFeeBuy').disabled = true;
+    document.getElementById('customTakerFeeBuy').disabled = false;
+});
+
+document.getElementById('makerSell').addEventListener('change', function() {
+    document.getElementById('customMakerFeeSell').disabled = false;
+    document.getElementById('customTakerFeeSell').disabled = true;
+});
+
+document.getElementById('takerSell').addEventListener('change', function() {
+    document.getElementById('customMakerFeeSell').disabled = true;
+    document.getElementById('customTakerFeeSell').disabled = false;
+});
+
 function calculateProfit() {
     const usdtAmount = parseFloat(document.getElementById('usdtAmount').value) || 0;
     const buyPrice = parseFloat(document.getElementById('buyPrice').value) || 0;
@@ -8,15 +28,27 @@ function calculateProfit() {
     const useMakerBuy = document.getElementById('makerBuy').checked;
     const useMakerSell = document.getElementById('makerSell').checked;
 
-    const makerFeeBuy = 0.1 / 100;
-    const takerFeeBuy = 0.2 / 100;
-    const makerFeeSell = 0.1 / 100;
-    const takerFeeSell = 0.2 / 100;
+    let makerFeeBuy = 0.1;
+    let takerFeeBuy = 0.2;
+    let makerFeeSell = 0.1;
+    let takerFeeSell = 0.2;
+
+    if (useMakerBuy) {
+        makerFeeBuy = parseFloat(document.getElementById('customMakerFeeBuy').value) || 0.1;
+    } else {
+        takerFeeBuy = parseFloat(document.getElementById('customTakerFeeBuy').value) || 0.2;
+    }
+
+    if (useMakerSell) {
+        makerFeeSell = parseFloat(document.getElementById('customMakerFeeSell').value) || 0.1;
+    } else {
+        takerFeeSell = parseFloat(document.getElementById('customTakerFeeSell').value) || 0.2;
+    }
 
     const tokenAmount = usdtAmount / buyPrice;
 
-    const buyExchangeFeeRate = useMakerBuy ? makerFeeBuy : takerFeeBuy;
-    const sellExchangeFeeRate = useMakerSell ? makerFeeSell : takerFeeSell;
+    const buyExchangeFeeRate = useMakerBuy ? makerFeeBuy / 100 : takerFeeBuy / 100;
+    const sellExchangeFeeRate = useMakerSell ? makerFeeSell / 100 : takerFeeSell / 100;
 
     const buyExchangeFee = usdtAmount * buyExchangeFeeRate;
     const sellExchangeFee = (tokenAmount * sellPrice) * sellExchangeFeeRate;
