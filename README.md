@@ -6,7 +6,17 @@
 
 # Kalkulator Arbitrage CEX
 
-Kalkulator web sederhana berbahasa Indonesia untuk memperkirakan hasil arbitrase token antar-centralized exchanges (CEX), dengan memperhitungkan biaya trading dan penarikan.
+Kalkulator berbasis browser untuk memperkirakan hasil arbitrase antar-centralized exchange dengan memperhitungkan trading fee dan biaya penarikan.
+
+> **Ghifarion** · Engineering Intelligence. Building Legacy.
+
+## On this page
+
+- [Fitur](#fitur)
+- [Cara menjalankan](#cara-menjalankan)
+- [Catatan risiko](#catatan-penting)
+
+---
 
 ## Fitur
 
