@@ -1,3 +1,9 @@
+<div align="center">
+
+<img src="assets/ghifarion/repo-banner.svg" alt="CEX ARBITRAGE CALCULATOR — Model fees. Compare outcomes. Decide with clarity." width="100%">
+
+</div>
+
 # Kalkulator Arbitrage CEX
 
 Kalkulator web sederhana berbahasa Indonesia untuk memperkirakan hasil arbitrase token antar-centralized exchanges (CEX), dengan memperhitungkan biaya trading dan penarikan.
